@@ -30,7 +30,7 @@ class DiscordAuth extends OAuth2
   /**
    * @inheritdoc
    */
-  public $apiBaseUrl = 'https://discord.com/api/v6';
+  public $apiBaseUrl = 'https://discord.com/api/v8';
 
   /**
    * @inheritdoc
