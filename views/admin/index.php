@@ -23,10 +23,12 @@ use yii\helpers\Html;
             <?php $form = ActiveForm::begin(['id' => 'configure-form', 'enableClientValidation' => false, 'enableClientScript' => false]); ?>
 
             <?= $form->field($model, 'enabled')->checkbox(); ?>
+            <?= $form->field($model, 'autoLogin')->checkbox(); ?>
 
             <br/>
             <?= $form->field($model, 'clientId'); ?>
-            <?= $form->field($model, 'clientSecret'); ?>
+            <?= $form->field($model, 'clientSecret')->textInput(['type' => 'password']); ?>
+            <?= $form->field($model, 'webhook'); ?>
 
             <br/>
             <?= $form->field($model, 'redirectUri')->textInput(['readonly' => true]); ?>
