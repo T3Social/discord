@@ -33,13 +33,24 @@ class ConfigureForm extends Model
     public $redirectUri;
 
     /**
+     * @var bool
+     */
+    public $autoLogin = false;
+
+    /**
+     * @var string the client secret provided by Discord
+     */
+    public $webhook;
+
+    /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
             [['clientId', 'clientSecret'], 'required'],
-            [['enabled'], 'boolean'],
+            [['enabled', 'autoLogin'], 'boolean'],
+            [['webhook'], 'string']
         ];
     }
 
@@ -52,6 +63,8 @@ class ConfigureForm extends Model
             'enabled' => Yii::t('AuthDiscordModule.base', 'Enabled'),
             'clientId' => Yii::t('AuthDiscordModule.base', 'Client ID'),
             'clientSecret' => Yii::t('AuthDiscordModule.base', 'Client secret'),
+            'autoLogin' => Yii::t('AuthDiscordModule.base', 'Automatic Login'),
+            'webhook' => Yii::t('AuthDiscordModule.base', 'Webhook'),
         ];
     }
 
@@ -61,6 +74,7 @@ class ConfigureForm extends Model
     public function attributeHints()
     {
         return [
+            'autoLogin' => Yii::t('AuthDiscordModule.base', 'Possible only if anonymous registration is allowed in the admin users settings'),
         ];
     }
 
@@ -77,6 +91,8 @@ class ConfigureForm extends Model
         $this->enabled = (boolean)$settings->get('enabled');
         $this->clientId = $settings->get('clientId');
         $this->clientSecret = $settings->get('clientSecret');
+        $this->webhook = $settings->get('webhook', $this->webhook);
+        $this->autoLogin = (boolean)$settings->get('autoLogin', $this->autoLogin);
 
         $this->redirectUri = Url::to(['/user/auth/external', 'authclient' => 'discord'], true);
     }
@@ -92,6 +108,7 @@ class ConfigureForm extends Model
         $module->settings->set('enabled', (boolean)$this->enabled);
         $module->settings->set('clientId', $this->clientId);
         $module->settings->set('clientSecret', $this->clientSecret);
+        $module->settings->set('webhook', $this->webhook);
 
         return true;
     }
