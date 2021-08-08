@@ -92,6 +92,45 @@ class DiscordAuth extends OAuth2
   /**
    * @inheritdoc
    */
+   protected function sendMessage($msg, $webhook)
+   {
+       $config = ConfigureForm::getInstance();
+       $webhook = $config; 
+       $timestamp = date('c', strtotime("now"));
+       $msg = json_encode(['content' => 'New Member joined!', 'tts' => false, 'timestamp' => $timestamp,], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+
+       if ($webhook != $config) {
+           $ch = curl_init( $webhook );
+           curl_setopt( $ch, CURLOPT_HTTPHEADER, ['Content-type: application/json']);
+           curl_setopt( $ch, CURLOPT_POST, 1);
+           curl_setopt( $ch, CURLOPT_POSTFIELDS, $msg);
+           curl_setopt( $ch, CURLOPT_FOLLOWLOCATION, 1);
+           curl_setopt( $ch, CURLOPT_HEADER, 0);
+           curl_setopt( $ch, CURLOPT_RETURNTRANSFER, 1);
+
+           $response = curl_exec( $ch );
+           // If you need to debug, or find out why you can't send message uncomment line below, and execute script.
+           echo $response;
+           curl_close( $ch );
+
+       }
+       sendMessage($msg, $webhook); // SENDS MESSAGE TO DISCORD
+       echo "sent?";
+   }
+
+  /**
+   * @inheritdoc
+   */
+   protected function initChannelAttributes()
+   {
+       $webhook = ''; 
+       $msg = json_encode([], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+     return $this->api('/channels/{channel.id}/messages', 'POST');
+   }
+
+  /**
+   * @inheritdoc
+   */
    public function applyAccessTokenToRequest($request, $accessToken)
    {
      $request->getHeaders()->set('Authorization', 'Bearer '. $accessToken->getToken());
