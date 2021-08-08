@@ -56,7 +56,6 @@ class DiscordAuth extends OAuth2
        'popupWidth' => 860,
        'popupHeight' => 480,
        'cssIcon' => 'fab fa-discord',
-       'buttonBackgroundColor' => '#7289DA',
      ];
    }
 
@@ -92,7 +91,7 @@ class DiscordAuth extends OAuth2
   /**
    * @inheritdoc
    */
-   protected function sendMessage($msg, $webhook)
+   /*protected function sendMessage($msg, $webhook)
    {
        $config = ConfigureForm::getInstance();
        $webhook = $config; 
@@ -116,17 +115,17 @@ class DiscordAuth extends OAuth2
        }
        sendMessage($msg, $webhook); // SENDS MESSAGE TO DISCORD
        echo "sent?";
-   }
+   }*/
 
   /**
    * @inheritdoc
    */
-   protected function initChannelAttributes()
+   /*protected function initChannelAttributes()
    {
        $webhook = ''; 
        $msg = json_encode([], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
      return $this->api('/channels/{channel.id}/messages', 'POST');
-   }
+   }*/
 
   /**
    * @inheritdoc
