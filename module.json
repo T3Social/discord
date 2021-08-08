@@ -4,9 +4,9 @@
     "description": "Integrating Discord Sign-In (OAuth 2.0).",
     "keywords": [
     ],
-    "version": "1.0",
-    "homepage": "https://github.com/greenmeteor/humhub-module-auth-discord",
+    "version": "1.0.1",
+    "homepage": "https://github.com/greenmeteor/auth-discord",
     "humhub": {
-        "minVersion": "1.6"
+        "minVersion": "1.7"
     }
 }
