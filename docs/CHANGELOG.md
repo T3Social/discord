@@ -1,9 +1,12 @@
 Changelog
 =========
 
-### 1.0.2 (Unreleased)
+### 1.1.0 (Unreleased)
+Enh: Implement all functions from **[discordapp](https://github.com/GreenMeteor/discordapp)** & **premium_discord** module into one module
 
-- Enh: New `sendMessage()` function, this function ***should*** send a message to your Discord server on new connection still testing function for future release!
+~### 1.0.2 (Unreleased)~
+
+- ~Enh: New `sendMessage()` function, this function ***should*** send a message to your Discord server on new connection still testing function for future release!~
 
 ### 1.0.1 (8/8/2021)
 
