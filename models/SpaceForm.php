@@ -1,6 +1,6 @@
 <?php
 
-namespace gm\humhub\integration\discord\models;
+namespace gm\humhub\modules\integration\discord\models;
 
 use Yii;
 use yii\base\Model;
