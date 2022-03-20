@@ -6,7 +6,7 @@
  * @license https://greenmeteor.net/p/licences
  */
 
-namespace gm\humhub\modules\auth\discord\authclient;
+namespace gm\humhub\modules\integration\discord\authclient;
 
 use Yii;
 use yii\authclient\OAuth2;
